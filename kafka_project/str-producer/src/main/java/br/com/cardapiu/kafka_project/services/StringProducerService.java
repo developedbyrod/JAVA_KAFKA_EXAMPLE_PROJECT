@@ -15,7 +15,12 @@ public class StringProducerService {
 
     public void sendMessage(String message){
         kafkaTemplate.send("string-topic", message).thenAccept(
-                success -> log.info("Mensagem enviada: " + message)
+                success -> {
+                    if(success != null){
+                        log.info("Mensagem enviada: " + message);
+                        log.info("Partition {}, Offset {}", success.getRecordMetadata().partition(), success.getRecordMetadata().offset());
+                    }
+                }
                 ).exceptionally(
                 error -> {
                     log.error("Erro ao enviar mensagem: " + message);
