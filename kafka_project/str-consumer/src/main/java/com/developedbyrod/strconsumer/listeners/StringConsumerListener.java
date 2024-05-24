@@ -1,4 +1,5 @@
 package com.developedbyrod.strconsumer.listeners;
+import com.developedbyrod.strconsumer.custom.StrCustomConsumerListener;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -8,8 +9,19 @@ import org.springframework.stereotype.Component;
 public class StringConsumerListener {
 
 
-    @KafkaListener(groupId = "group-one", topics = "str-topic", containerFactory = "stringContainerFactory")
-    public void listener(String message){
-        log.info("Message received: {}", message);
+    @StrCustomConsumerListener(topics ="str-topic", groupId = "group-1")
+    public void create(String message){
+        log.info("CREATE ::: Message received: {}", message);
     }
+
+    @StrCustomConsumerListener(topics = "str-topic", groupId = "group-2")
+    public void log(String message){
+        log.info("LOG ::: Message received: {}", message);
+    }
+
+    @StrCustomConsumerListener(topics= "str-topic", groupId = "group-3")
+    public void history(String message){
+        log.info("HISTORY :::  Message received: {}", message);
+    }
+
 }

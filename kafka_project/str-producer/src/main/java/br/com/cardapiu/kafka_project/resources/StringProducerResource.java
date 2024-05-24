@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/string-producer")
+@RequestMapping(value = "/producer")
 public class StringProducerResource {
 
     private final StringProducerService stringProducerService;

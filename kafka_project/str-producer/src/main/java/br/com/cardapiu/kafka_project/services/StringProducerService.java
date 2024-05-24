@@ -14,7 +14,7 @@ public class StringProducerService {
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     public void sendMessage(String message){
-        kafkaTemplate.send("string-topic", message).thenAccept(
+        kafkaTemplate.send("str-topic", message).thenAccept(
                 success -> {
                     if(success != null){
                         log.info("Mensagem enviada: " + message);
